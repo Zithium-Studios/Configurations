@@ -1,0 +1,318 @@
+#
+# ZithiumCollectors
+#
+# Admin permission: collectors.admin
+#
+# Dependencies:
+#  - A Shop plugin (see list below)
+#  - Hologram Plugin (DecentHolograms [RECOMMENDED], HolographicDisplays, CMI)
+#
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+# | PLUGIN SETTINGS                      |
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
+# Which plugin should we use for prices?
+# Valid options: Auto, CMI, EconomyShopGUI, Essentials, ExcellentShop, GUIShop, newtShop, QuantumShop, ShopGUIPlus, zShop.
+prices_provider: Auto
+
+# Should the plugin report stats to https://bstats.org/
+# All usage statistics are anonymous and has zero impact on performance.
+metrics: true
+
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+# | PLUGIN MESSAGES                          |
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+messages:
+  no_permission: "&cYou do not have permission to execute this command."
+  reload: "&aThe plugin has been reloaded."
+  help_message:
+    - ""
+    - " &b&lZithiumCollectors &7{VERSION}"
+    - " &7&oBy Zithium Studios"
+    - " &r"
+    - " &7/collectors give <player> <type> [amount] &8- &fGive a player a collector"
+    - " &7/collectors view &8- &fView your active collectors"
+    - " &7/collectors reload &8- &fReload configuration"
+    - ""
+
+  list_collectors: "&7Registered Collector(s): &f{collectors}"
+  error_chunk_taken: "&7This chunk is unavailable as it already contains a collector."
+  error_collector_type_unavailable: "&7The collector type associated with this item is no longer available."
+  error_no_access: "&cYou do not have access to this collector."
+  error_no_collectors: "&cYou currently do not have any collectors!"
+  error_collector_already_open: "&cSomeone is already accessing this collector!"
+  error_owner_only: "&cOnly the owner of this collector can use this."
+  error_inventory_full: "&cYour inventory is currently full!"
+  error_world_disabled: "&cYou are not allowed to place collectors in this world!"
+
+  given_collector: "&7You have given &f{PLAYER} &7x{AMOUNT} &a{TYPE} &7collector(s)."
+  placed_collector: "&7You have successfully placed a &a{TYPE} &7collector!"
+  player_removed_from_collector: "&7You have removed &f{PLAYER} &7from this collector."
+  autosell_enable: "&aAutoSell mode has been enabled."
+  autosell_disable: "&cAutoSell mode has been disabled."
+
+  items_autosell_sold: "&e&lCollector AutoSell: &a&l+ ${AMOUNT}"
+  items_sold: "&a&l+ ${AMOUNT}"
+  items_withdrawn: "&aSuccessfully withdrawn {AMOUNT}x {MATERIAL}."
+
+  invite_player_prompt: "&7Please enter the username of the player you would like to add or type 'cancel' to cancel."
+  invite_cancelled: "&cCancelled!"
+  invite_target_invalid: "&cThat player is invalid or offline - cancelled."
+  invite_target_already_member: "&c{PLAYER} is already a member of this collector."
+  invite_target_added: "&aYou have successfully added {PLAYER} to this collector."
+
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+# | COLLECTORS CONFIGURATION                 |
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
+# Time for all collectors to autosell (in minutes)
+autosell_task_period: 3
+
+# Should holograms update based on the delay below? Disabling this will improve performance if you are not using placeholders in the hologram.
+update_holograms: true
+
+# How often should the hologram placeholder update. (in seconds)
+hologram_update_delay: 15
+
+# Should collectors be logged when removed or placed down.
+log_collector_movement: false
+
+
+# What worlds should collectors be not allowed to be placed in?
+disabled-worlds:
+  - example_world
+
+collector_types:
+  crop: # <-- NOTE: CHANGING ID ON LIVE SERVER WILL BREAK EXISTING COLLECTORS
+    item:
+      material: BEACON
+      display_name: "&6&l* &e&lCROP HOPPER &6&l"
+      lore:
+        - "&7Place to activate."
+    block: BEACON
+    autosell: true
+    hologram_y_offset: 1.5 # height of hologram above collector
+    # Hologram Placeholders:
+    # - {OWNER} - Returns the owner of the collector.
+    # - {TOTAL_WORTH} - Returns the total value of all items in the collector.
+    # - {TOTAL_WORTH_FORMATTED} - Returns the value of the collector formatted.
+    hologram:
+      - '&6&l* &e&lCROP HOPPER &6&l*'
+    collection_items:
+      - WHEAT
+      - POTATO
+      - PUMPKIN
+      - CARROT
+      - SUGAR_CANE
+      - MELON_SLICE
+      - CACTUS
+  mobs:
+    item:
+      material: BEACON
+      display_name: "&3&l* &b&lMOB HOPPER &3&l*"
+      lore:
+        - "&7Place to activate."
+    block: BEACON
+    autosell: true
+    hologram_y_offset: 1.5
+    hologram:
+      - '&3&l* &b&lMOB HOPPER &3&l*'
+    collection_items:
+      - ROTTEN_FLESH
+      - BONE
+
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+# | MENUS CONFIGURATION                      |
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
+menus:
+  all_collectors_gui:
+    title: "All Collectors"
+    rows: 5
+
+    filler_items:
+      glass:
+        material: GRAY_STAINED_GLASS_PANE
+        display_name: "&r"
+        slots: [ 0-9, 17-18, 26-27, 36-44 ]
+
+    items:
+      sell_all_owned:
+        enabled: true
+        material: NETHER_STAR
+        display_name: "&e&lSell All &a(Owned)"
+        lore:
+          - "&6&l*&r &7Click to &e&l&nSELL ALL&r &7collectors."
+        slot: 40
+
+      sell_all_member:
+        enabled: true
+        material: NETHER_STAR
+        display_name: "&e&lSell All &7(Trusted)"
+        lore:
+          - '&fSell all the items from collectors you are trusted in.'
+          - "&6&l*&r &7Click to &e&l&nSELL ALL&r &7collectors."
+        slot: 43
+
+      next_page:
+        material: PAPER
+        display_name: "&e&lNext Page"
+        lore:
+          - "&7Click to go to the next page."
+        slot: 41
+
+      previous_page:
+        material: PAPER
+        display_name: "&c&lPrevious Page"
+        lore:
+          - "&7Click to go to the previous page."
+        slot: 39
+
+      collector_item:
+        display_name: "&eX: &f{X}&e, Y: &f{Y}&e, Z: &f{Z}"
+        lore:
+          - ''
+          - '&6&l*&r &eOwner: &f{OWNER}'
+          - ''
+          - '&eClick to manage this hopper.'
+
+
+
+  collector_gui:
+    title: "Collector"
+    rows: 5
+
+    filler_items:
+      glass:
+        material: GRAY_STAINED_GLASS_PANE
+        display_name: "&r"
+        slots: [ 0-9, 15-18, 24-27, 33-44 ]
+
+    items:
+      manage_members:
+        material: PLAYER_HEAD
+        base64: eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNjc4NTZlNzNlZjZlNDA2ZTE4YTFlODRmMTM3ZTI3Y2RhYWQ3OTQyOWRhMGIwOGQxOTVhNmIyMjIyMjMxNDhkIn19fQ==
+        display_name: "&e&lManage Members"
+        lore:
+          - "&7Click here to manage members."
+        slot: 16
+      remove_collector:
+        material: BARRIER
+        display_name: "&c&lRemove Collector"
+        lore:
+          - "&7Click here to remove your Collector."
+        slot: 34
+      sell_all:
+        material: PAPER
+        display_name: "&e&lSell All &7(x{AMOUNT})"
+        lore:
+          - ""
+          - "&6Collector Worth: &f${TOTAL_WORTH}"
+          - ""
+          - "&6&l*&r &7Click to &esell all"
+        slot: 24
+      autosell_slot: 26
+      autosell_enable:
+        material: GRAY_DYE
+        display_name: "&e&lAutoSell Toggle"
+        lore:
+          - ""
+          - "&aClick to enable autosell"
+      autosell_disable:
+        material: LIME_DYE
+        display_name: "&e&lAutoSell Toggle"
+        lore:
+          - ""
+          - "&cClick to disable autosell"
+      collection_item:
+        display_name: "&e{MATERIAL} &7(x{AMOUNT})"
+        lore:
+          - ""
+          - "&6Total Worth: &f${TOTAL_WORTH} &7[${WORTH}x{AMOUNT}]"
+          - ""
+          - "&6&l*&r &7Left click to &esell all"
+          - "&6&l*&r &7Right click to &ewithdraw all"
+      next_page:
+        material: PAPER
+        display_name: "&e&lNext Page"
+        lore:
+          - "&7Click to go to the next page."
+        slot: 40
+      previous_page:
+        material: PAPER
+        display_name: "&c&lPrevious Page"
+        lore:
+          - "&7Click to go to the previous page."
+        slot: 38
+
+      not_enough_items:
+        material: BARRIER
+        display_name: "&c&lERROR"
+        lore:
+          - "&fThere are no items of this type!"
+
+  members_gui:
+    title: "Member Management"
+    rows: 5
+
+    filler_items:
+      glass:
+        material: GRAY_STAINED_GLASS_PANE
+        display_name: "&r"
+        slots: [ 0-9, 15-18, 24-27, 33-44 ]
+
+    items:
+      invite_member:
+        material: PLAYER_HEAD
+        base64: eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvYTdlZDY2ZjVhNzAyMDlkODIxMTY3ZDE1NmZkYmMwY2EzYmYxMWFkNTRlZDVkODZlNzVjMjY1ZjdlNTAyOWVjMSJ9fX0=
+        display_name: "&6&lAdd Member"
+        lore:
+          - "&7Add a member to your collector"
+        slot: 16
+      go_back:
+        material: PLAYER_HEAD
+        base64: eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvMzYyNTkwMmIzODllZDZjMTQ3NTc0ZTQyMmRhOGY4ZjM2MWM4ZWI1N2U3NjMxNjc2YTcyNzc3ZTdiMWQifX19
+        display_name: "&c&lGo back"
+        lore:
+          - "&7Return to the main menu"
+        slot: 34
+      member:
+        display_name: "&b{PLAYER}"
+        lore:
+          - "&6Amount Sold: &f${AMOUNT_SOLD}"
+          - "&6Items Withdrawn: &f{ITEMS_WITHDRAWN}"
+          - ""
+          - "&cClick to remove this member (owner only)."
+
+        display_name_owner: "&b{PLAYER} &7(Owner)"
+        lore_owner:
+          - "&6Amount Sold: &f${AMOUNT_SOLD}"
+          - "&6Items Withdrawn: &f{ITEMS_WITHDRAWN}"
+
+  withdraw_gui:
+    title: "Withdraw"  # Title for the GUI
+    rows: 3  # Number of rows in the GUI
+
+    filler_items:
+      glass:
+        material: "GRAY_STAINED_GLASS_PANE"  # Material for the filler items
+        display_name: "&r"  # Display name for the filler items
+        slots: [ 0-11, 13, 15-26 ]  # Slots to fill with glass
+
+    # Configurations for each withdraw button
+    withdraw_buttons:
+      withdraw_all:
+        slot: 12  # Slot in the GUI for this button
+        material: CHEST  # Material type for this button
+        display_name: "&aWithdraw All"  # Display name for this button
+        lore:
+          - '&fWithdraws all items or until your inventory is full.'
+        withdraw_amount: all  # Will fill the user's inventory.
+
+      withdraw_stack:
+        slot: 14  # Slot in the GUI for this button
+        material: OAK_SIGN # Material type for this button
+        display_name: "&aWithdraw Stack"  # Display name for this button
+        lore:
+          - '&fWithdraws a stack of the selected item.'
+        withdraw_amount: 64  # Amount of items to withdraw when clicked
