@@ -1,0 +1,117 @@
+icon:
+  name: '&bᴘʀɪᴍᴇ ᴄʀᴀᴛᴇ'
+  material: CHEST
+  lore:
+    - '&7(Place this crate)'
+
+inventory:
+  name: '&8ᴄʜᴏᴏsᴇ 1 ɪᴛᴇᴍ'
+  rows: 3
+  background-icon:
+    material: BLACK_STAINED_GLASS_PANE
+    name: '&bᴘʀɪᴍᴇ ᴄʀᴀᴛᴇ'
+    lore:
+      - '&7With a ᴘʀɪᴍᴇ ᴋᴇʏ you can choose'
+      - '&7which of the 7 you want.'
+
+hologram:
+  1:
+    height: 1.5
+    lines:
+      - '&bᴘʀɪᴍᴇ ᴄʀᴀᴛᴇ'
+      - '&f/store'
+  2:
+    height: -0.3
+    lines:
+      - '&b%donut_prime-crate% &fKeys'
+
+rewards:
+  1:
+    slot: 10
+    give-icon: true
+    icon:
+      material: NETHERITE_HELMET
+      name: '&bᴘʀɪᴍᴇ ʜᴇʟᴍᴇᴛ'
+      trim:
+        material: diamond
+        pattern: host
+      enchantments:
+        mending: 1
+        protection: 4
+        respiration: 3
+        unbreaking: 3
+  2:
+    slot: 11
+    give-icon: true
+    icon:
+      material: NETHERITE_CHESTPLATE
+      name: '&bᴘʀɪᴍᴇ ᴄʜᴇsᴛᴘʟᴀᴛᴇ'
+      trim:
+        material: diamond
+        pattern: host
+      enchantments:
+        mending: 1
+        protection: 4
+        unbreaking: 3
+  3:
+    slot: 12
+    give-icon: true
+    icon:
+      material: NETHERITE_LEGGINGS
+      name: '&bᴘʀɪᴍᴇ ʟᴇɢɢɪɴɢs'
+      trim:
+        material: diamond
+        pattern: host
+      enchantments:
+        blast_protection: 4
+        mending: 1
+        swift_sneak: 3
+        unbreaking: 3
+  4:
+    slot: 13
+    give-icon: true
+    icon:
+      material: NETHERITE_BOOTS
+      name: '&bᴘʀɪᴍᴇ ʙᴏᴏᴛs'
+      trim:
+        material: diamond
+        pattern: host
+      enchantments:
+        mending: 1
+        soul_speed: 3
+        unbreaking: 3
+        protection: 4
+        depth_strider: 3
+        feather_falling: 4
+  5:
+    slot: 14
+    give-icon: true
+    icon:
+      material: NETHERITE_SWORD
+      name: '&bᴘʀɪᴍᴇ sᴡᴏʀᴅ'
+      enchantments:
+        knockback: 1
+        mending: 1
+        sharpness: 5
+        unbreaking: 3
+        looting: 3
+  6:
+    slot: 15
+    give-icon: true
+    icon:
+      material: CROSSBOW
+      name: '&bᴘʀɪᴍᴇ ᴄʀᴏssʙᴏᴡ'
+      enchantments:
+        mending: 1
+        multishot: 1
+        quick_charge: 3
+        unbreaking: 3
+  7:
+    slot: 16
+    give-icon: true
+    icon:
+      material: ELYTRA
+      name: '&bᴘʀɪᴍᴇ ᴇʟʏᴛʀᴀ'
+      enchantments:
+        mending: 1
+        unbreaking: 3
