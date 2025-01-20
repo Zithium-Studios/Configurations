@@ -46,13 +46,13 @@ settings:
     # Vault Economy (requires Vault + economy plugin)
     # https://dev.bukkit.org/projects/vault
     VAULT:
-      enabled: true
+      enabled: false
       display_currency_name: "Money"
 
     # TokenEnchant Economy (requires TokenEnchant plugin)
     # https://polymart.org/resource/155
     TOKENENCHANT:
-      enabled: true
+      enabled: false
       display_currency_name: "TokenEnchant"
 
     # PlayerPoints Economy (requires PlayerPoints plugin)
@@ -64,20 +64,31 @@ settings:
     # TokenManager Economy (requires TokenManager plugin)
     # https://www.spigotmc.org/resources/8610/
     TOKENMANAGER:
-      enabled: true
+      enabled: false
       display_currency_name: "TokenManager"
 
     # ZithiumMobcoins integration (requires ZithiumMobcoins plugin)
     # https://www.spigotmc.org/resources/113153/
     ZITHIUMMOBCOINS:
-      enabled: true
+      enabled: false
       display_currency_name: "Mobcoins"
 
     # BeastTokens Economy (requires BeastTokens plugin)
     # https://www.spigotmc.org/resources/20806/
     BEASTTOKENS:
-      enabled: true
+      enabled: false
       display_currency_name: "Tokens"
+
+    CUSTOM_CURRENCY:
+      # Should the custom currency be enabled.
+      enabled: true
+      display_currency_name: "Custom"
+      # This is used to check the balance of the user. BE SURE THIS DOES NOT FORMAT THE BALANCE
+      raw_balance_placeholder: '%vault_eco_balance%'
+      # These are the commands used to withdraw and deposit winnings to the user. They are ran by console.
+      commands:
+        withdraw: 'eco take {player} {amount}'
+        deposit: 'eco give {player} {amount}'
 
 
 coinflip-gui:
