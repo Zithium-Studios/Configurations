@@ -44,6 +44,7 @@ messages:
   error_owner_only: "&cOnly the owner of this collector can use this."
   error_inventory_full: "&cYour inventory is currently full!"
   error_world_disabled: "&cYou are not allowed to place collectors in this world!"
+  error_item_worthless: "&cYou are not allowed to sell items worth $0."
 
   given_collector: "&7You have given &f{PLAYER} &7x{AMOUNT} &a{TYPE} &7collector(s)."
   placed_collector: "&7You have successfully placed a &a{TYPE} &7collector!"
