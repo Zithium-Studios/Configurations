@@ -317,3 +317,11 @@ menus:
         lore:
           - '&fWithdraws a stack of the selected item.'
         withdraw_amount: 64  # Amount of items to withdraw when clicked
+
+    sell_item:
+      sell_current_item:
+        slot: 22
+        material: PAPER
+        display_name: "&a&lSell"
+        lore:
+          - '&fSell all of this current item.'
