@@ -5,7 +5,7 @@
 #
 # Dependencies:
 #  - A Shop plugin (see list below)
-#  - Hologram Plugin (DecentHolograms [RECOMMENDED], HolographicDisplays, CMI)
+#  - Hologram Plugin (DecentHolograms, HolographicDisplays, CMI, FancyHolograms)
 #
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 # | PLUGIN SETTINGS                      |
@@ -78,6 +78,10 @@ hologram_update_delay: 15
 # Should collectors be logged when removed or placed down.
 log_collector_movement: false
 
+# Change what click types do in the menu. Valid types: RIGHT, LEFT
+click_actions:
+  SELL_ITEM: LEFT
+  WITHDRAW_MENU: RIGHT
 
 # What worlds should collectors be not allowed to be placed in?
 disabled-worlds:
