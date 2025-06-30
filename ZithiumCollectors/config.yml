@@ -19,6 +19,10 @@ prices_provider: Auto
 # All usage statistics are anonymous and has zero impact on performance.
 metrics: true
 
+# Leaving this true is recommended unless you use price modifiers in your price provider.
+# This has a major performance impact if disabled currently.
+enable_price_cache: true
+
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 # | PLUGIN MESSAGES                          |
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
