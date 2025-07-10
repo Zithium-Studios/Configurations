@@ -82,6 +82,9 @@ hologram_update_delay: 15
 # Should collectors be logged when removed or placed down.
 log_collector_movement: false
 
+# Should the plugin ignore data that is present on dropped items?
+ignore_nbt_data: false
+
 # Change what click types do in the menu. Valid types: RIGHT, LEFT
 click_actions:
   SELL_ITEM: LEFT
